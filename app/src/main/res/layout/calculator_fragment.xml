@@ -189,6 +189,7 @@
                 android:textSize="18sp"
                 android:layout_gravity="center"
                 android:visibility="gone"
+                android:textAlignment="center"
                 />
 
             <TextView
@@ -199,6 +200,7 @@
                 android:textSize="18sp"
                 android:layout_gravity="center"
                 android:visibility="gone"
+                android:textAlignment="center"
                 />
 
         </LinearLayout>
@@ -367,7 +369,7 @@
             android:id="@+id/tv_required_amount_of_fuel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wymagana ilość litrów paliwa: 6.6l/100km"
+            android:text="Wymagana ilość paliwa: 6.6l"
             android:layout_marginTop="35dp"
             android:textSize="18sp"
             android:layout_gravity="center"
