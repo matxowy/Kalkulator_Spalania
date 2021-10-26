@@ -6,14 +6,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.text.bold
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.matxowy.kalkulatorspalania.R
@@ -201,18 +199,86 @@ class CalculatorFragment : Fragment() {
         binding.apply {
             when {
                 llFuelConsumptionView.visibility == View.VISIBLE -> {
-                    tvAvgFuelConsumption.text = "Uzupełnij wymagane pola"
+                    showPreciseInfoAboutMissingDataInConsumptionTab()
+                }
+                llCostsView.visibility == View.VISIBLE -> {
+                    showPreciseInfoAboutMissingDataInCostsTab()
+                }
+                llRangeView.visibility == View.VISIBLE -> {
+                    showPreciseInfoAboutMissingDataInRangeTab()
+                }
+            }
+        }
+    }
+
+    private fun showPreciseInfoAboutMissingDataInConsumptionTab() {
+        binding.apply {
+            when {
+                viewModel.refueled == null -> {
+                    tvAvgFuelConsumption.text = "Brak danych o zatankowanym paliwie"
                     tvAvgFuelConsumption.visibility = View.VISIBLE
                     tvCostOf100km.visibility = View.GONE
                 }
-                llCostsView.visibility == View.VISIBLE -> {
-                    tvRequiredAmountOfFuel.text = "Uzupełnij wszystkie pola"
+                viewModel.kmTraveled == null -> {
+                    tvAvgFuelConsumption.text = "Brak danych o przejechanych kilometrach"
+                    tvAvgFuelConsumption.visibility = View.VISIBLE
+                    tvCostOf100km.visibility = View.GONE
+                }
+                viewModel.fuelPrice == null -> {
+                    tvAvgFuelConsumption.text = "Brak danych o cenie za litr paliwa"
+                    tvAvgFuelConsumption.visibility = View.VISIBLE
+                    tvCostOf100km.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun showPreciseInfoAboutMissingDataInCostsTab() {
+        binding.apply {
+            when {
+                viewModel.avgFuelConsumption == null -> {
+                    tvRequiredAmountOfFuel.text = "Brak danych o średnim spalaniu"
                     tvRequiredAmountOfFuel.visibility = View.VISIBLE
                     tvTravelCost.visibility = View.GONE
                     tvTravelCostPerPerson.visibility = View.GONE
                 }
-                llRangeView.visibility == View.VISIBLE -> {
-                    tvFilledWithFuel.text = "Uzupełnij wszystkie pola"
+                viewModel.kmTraveled == null -> {
+                    tvRequiredAmountOfFuel.text = "Brak danych o przejechanych kilometrach"
+                    tvRequiredAmountOfFuel.visibility = View.VISIBLE
+                    tvTravelCost.visibility = View.GONE
+                    tvTravelCostPerPerson.visibility = View.GONE
+                }
+                viewModel.fuelPrice == null -> {
+                    tvRequiredAmountOfFuel.text = "Brak danych o cenie za litr paliwa"
+                    tvRequiredAmountOfFuel.visibility = View.VISIBLE
+                    tvTravelCost.visibility = View.GONE
+                    tvTravelCostPerPerson.visibility = View.GONE
+                }
+                viewModel.numberOfPeople == null -> {
+                    tvRequiredAmountOfFuel.text = "Brak danych o liczbie osób"
+                    tvRequiredAmountOfFuel.visibility = View.VISIBLE
+                    tvTravelCost.visibility = View.GONE
+                    tvTravelCostPerPerson.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun showPreciseInfoAboutMissingDataInRangeTab() {
+        binding.apply {
+            when {
+                viewModel.avgFuelConsumption == null -> {
+                    tvFilledWithFuel.text = "Brak danych o średnim spalaniu"
+                    tvFilledWithFuel.visibility = View.VISIBLE
+                    tvExpectedRange.visibility = View.GONE
+                }
+                viewModel.paid == null -> {
+                    tvFilledWithFuel.text = "Brak danych o zapłaconej kwocie"
+                    tvFilledWithFuel.visibility = View.VISIBLE
+                    tvExpectedRange.visibility = View.GONE
+                }
+                viewModel.fuelPrice == null -> {
+                    tvFilledWithFuel.text = "Brak danych o cenie za litr paliwa"
                     tvFilledWithFuel.visibility = View.VISIBLE
                     tvExpectedRange.visibility = View.GONE
                 }
