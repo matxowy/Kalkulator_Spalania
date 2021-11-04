@@ -13,6 +13,7 @@ When some data is missing app show information what is missing for do calculate
 
 When app have all needed data it display the calculations automatic (no need to click any button)
 
+
 ![5](https://user-images.githubusercontent.com/65039984/140064946-a599603b-1999-4569-9d52-cd0c05e4b0f0.png)
-![6](https://user-images.githubusercontent.com/65039984/140064949-a1bb3c7f-b6fc-401d-966e-b809897f99df.png)
+![6](https://user-images.githubusercontent.com/65039984/140317906-e8a25d4e-2703-475f-a4fc-2fd5735928f7.png)
 ![7](https://user-images.githubusercontent.com/65039984/140064955-a79fbe46-a343-49a8-83e6-a9392597d29f.png)
