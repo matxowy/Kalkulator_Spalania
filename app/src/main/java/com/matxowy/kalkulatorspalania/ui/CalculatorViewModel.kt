@@ -77,7 +77,7 @@ class CalculatorViewModel : ViewModel() {
         if (avgFuelConsumption == null || kmTraveled == null || fuelPrice == null || numberOfPeople == null) {
             calculatorEventChannel.send(CalculatorEvent.ShowMessageAboutMissingData)
         } else {
-            val requiredAmountOfFuel = kmTraveled!! / 100
+            val requiredAmountOfFuel = (kmTraveled!! / 100) * avgFuelConsumption!!
             val costForTravel = fuelPrice!! * requiredAmountOfFuel
             val costPerPerson = costForTravel / numberOfPeople!!
 
